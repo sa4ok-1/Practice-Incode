@@ -21,6 +21,31 @@ import { ConvertPathToObjectFn } from './types';
  * Output:
  * {}
  */
+
 export const convertPathToObject: ConvertPathToObjectFn = (path, value) => {
-  throw new Error('Not Implemented');
+  if (path === '') {
+    return {};
+  }
+
+  const keys = path.split('.');
+  let result: unknown = value;
+
+  for (let i = keys.length - 1; i >= 0; i--) {
+    result = { [keys[i]]: result };
+  }
+
+  return result as Record<string, unknown>;
 };
+
+// reduceRight()
+export const convertPathToObject: ConvertPathToObjectFn = (path, value) => {
+  if (path === '') {
+    return {};
+  }
+  
+  return path.split('.').reduceRight<Record<string, unknown>>(
+    (acc, key) => ({ [key]: acc }),
+    value as Record<string, unknown>
+  );
+};
+

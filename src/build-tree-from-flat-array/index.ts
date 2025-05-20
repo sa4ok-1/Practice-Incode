@@ -38,6 +38,6 @@ import { BuildTreeFn } from './types';
  *   }
  * ]
  */
-export const buildTree: BuildTreeFn = (items) => {
+export const buildTree: BuildTreeFn = () => {
   throw new Error('Not Implemented');
 };
