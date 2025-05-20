@@ -22,11 +22,10 @@ export const createBreadcrumbs: CreateBreadcrumbsFn = (paths) => {
       return { path, label: 'Home' };
     }
 
-    const segments = path.replace(/^\/|\/$/g, '').split('/');
+    const segments = path.split('/').filter(Boolean);
     const lastPart = segments[segments.length - 1];
     const label = lastPart.charAt(0).toUpperCase() + lastPart.slice(1);
 
     return { path, label };
   });
 };
-createBreadcrumbs(['/home', '/home/products/', '/home/products/electronics'])
