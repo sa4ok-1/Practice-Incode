@@ -15,6 +15,12 @@ import { GetNestedPropertyFn } from './types';
  * Input: ({ a: null }, 'a.b')
  * Output: undefined
  */
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
 export const getNestedProperty: GetNestedPropertyFn = (obj, path) => {
-  throw new Error('Not Implemented');
+  return path.split('.').reduce((acc: unknown, key: string) => {
+    return isRecord(acc) ? acc[key] : undefined;
+  }, obj);
 };
