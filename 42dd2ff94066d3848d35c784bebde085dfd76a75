@@ -1,0 +1,17 @@
+[33mcommit e9deeaba314f939978b3f3356d3f6e848ba25c62[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mgroup-by-first-letter[m[33m, [m[1;31morigin/group-by-first-letter[m[33m)[m
+Author: Sasha <sasha.rusinka@gmail.com>
+Date:   Wed May 21 16:53:55 2025 +0300
+
+    feat(group-by-first-letter): implement GroupByFirstLetter function
+
+[33mcommit 42dd2ff94066d3848d35c784bebde085dfd76a75[m
+Author: Sasha <sasha.rusinka@gmail.com>
+Date:   Wed May 21 16:13:41 2025 +0300
+
+    feat(group-by-first-letter): implement GroupByFirstLetter  function
+
+[33mcommit b3b10f7f14b7766f7803e43414cc93905a95646f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Sa4ok <sasha.rusinka@gmail.com>
+Date:   Mon May 19 16:00:15 2025 +0300
+
+    main
