@@ -20,3 +20,9 @@ export type CalculateAverageRatingsTestCase = TestCaseBase<
   Rating[],
   MovieAverage[]
 >;
+
+export type movieRating = {
+  movieId: number;
+  totalScore: number;
+  count: number;
+};
