@@ -19,5 +19,24 @@ import { ParseQueryStringFn } from './types';
  * Output: { key: 'value', empty: '' }
  */
 export const parseQueryString: ParseQueryStringFn = (query) => {
-  throw new Error('Not Implemented');
+  const result: Record<string, string> = {};
+  const items = query.split('&');
+
+  items.forEach((item) => {
+    if (item.length === 0) {
+      return '';
+    }
+
+    const parts = item.split('=');
+    const key = parts[0];
+    const value = parts[1] || '';
+
+    if (key) {
+      result[key] = value;
+    }
+  });
+
+  return result;
 };
+
+console.log(parseQueryString('a=1&b=2'));
