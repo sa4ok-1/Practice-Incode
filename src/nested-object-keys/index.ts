@@ -16,5 +16,33 @@ import { NestedObjectKeysFn } from './types';
  * Output: []
  */
 export const nestedObjectKeys: NestedObjectKeysFn = (obj) => {
-  throw new Error('Not Implemented');
+  const result: string[] = [];
+
+  function extractPaths(currentObj: any, currentPath: string) {
+    if (typeof currentObj !== 'object' || currentObj === null) {
+      return;
+    }
+
+    for (const key in currentObj) {
+      let newPath = key;
+      if (currentPath) {
+        newPath = currentPath + '.' + key;
+      }
+      result.push(newPath);
+
+      if (
+        typeof currentObj[key] === 'object' &&
+        currentObj[key] !== null &&
+        !Array.isArray(currentObj[key])
+      ) {
+        extractPaths(currentObj[key], newPath);
+      }
+    }
+  }
+
+  extractPaths(obj, '');
+
+  return result;
 };
+
+console.log(nestedObjectKeys({ a: { b: { c: 1 } } }));
