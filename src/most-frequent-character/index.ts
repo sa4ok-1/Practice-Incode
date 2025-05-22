@@ -1,3 +1,4 @@
+// import { T } from 'vitest/dist/chunks/environment.d.Dmw5ulng';
 import { MostFrequentCharFn } from './types';
 
 /**
@@ -17,5 +18,29 @@ import { MostFrequentCharFn } from './types';
  * Output: ''
  */
 export const mostFrequentChar: MostFrequentCharFn = (text) => {
-  throw new Error('Not Implemented');
+  if (text === '') {
+    return '';
+  }
+  const cacheLetter: any = {};
+
+  for (const char of text) {
+    if (!cacheLetter[char]) {
+      cacheLetter[char] = 1;
+    }
+    cacheLetter[char]++;
+  }
+
+  let mostFrequent = '';
+  let countOfLetter = 0;
+
+  for (const char of text) {
+    if (cacheLetter[char] > countOfLetter) {
+      countOfLetter = cacheLetter[char];
+      mostFrequent = char;
+    }
+  }
+
+  return mostFrequent;
 };
+
+console.log(mostFrequentChar('aabbbcccccrrrrrr'));
