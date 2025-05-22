@@ -24,19 +24,17 @@ import { GroupByFirstLetterFn } from 'group-by-first-letter/types';
  * }
  */
 export const GroupByFirstLetter: GroupByFirstLetterFn = (words) => {
-  const result: { [key: string]: string[] } = {};
+  const result: Record<string, string[]> = {};
 
   words.forEach((word) => {
-    let firstLetter = '';
-    if (word.length > 0) {
-      firstLetter = word[0];
+    const firstLetter = word.length > 0 ? word[0] : '';
+
+    if (!result[firstLetter]) {
+      result[firstLetter] = [];
     }
 
-    if (result[firstLetter]) {
-      result[firstLetter].push(word);
-    } else {
-      result[firstLetter] = [word];
-    }
+    result[firstLetter].push(word);
   });
+
   return result;
 };
