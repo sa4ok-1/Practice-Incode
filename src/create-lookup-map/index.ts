@@ -17,5 +17,12 @@ import { ItemWithId } from './types';
 export const createLookupMap = <T extends ItemWithId>(
   array: T[],
 ): Record<number, T> => {
-  throw new Error('Not Implemented');
+  const map: Record<number, T> = {};
+
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i];
+    map[item.id] = item;
+  }
+
+  return map;
 };
