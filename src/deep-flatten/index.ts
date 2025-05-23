@@ -20,10 +20,11 @@ export const deepFlatten: DeepFlattenFn = (input) => {
   input.forEach((element) => {
     if (Array.isArray(element)) {
       res.push(...deepFlatten(element));
-    } else {
-      res.push(element);
+      return;
     }
+    res.push(element);
   });
+
   return res;
 };
 
