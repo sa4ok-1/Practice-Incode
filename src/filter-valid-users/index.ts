@@ -21,8 +21,6 @@ import { FilterValidUsersFn, ValidUser } from './types';
 export const filterValidUsers: FilterValidUsersFn = (users) => {
   return users.filter((user): user is ValidUser => {
     return (
-      user.name !== undefined &&
-      user.age !== undefined &&
       typeof user.name === 'string' &&
       typeof user.age === 'number' &&
       user.age > 18
