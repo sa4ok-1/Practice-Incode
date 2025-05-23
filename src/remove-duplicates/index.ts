@@ -17,5 +17,22 @@ import { RemoveDuplicatesFn } from './types';
  * [ { id: 1 }, { id: 2 } ]
  */
 export const removeDuplicates: RemoveDuplicatesFn = <T>(array: T[]): T[] => {
-  throw new Error('Not Implemented');
+  const result: T[] = [];
+
+  for (const item of array) {
+    if (typeof item === 'object' && item !== null) {
+      const isDuplicate = result.some(
+        (obj) => JSON.stringify(obj) === JSON.stringify(item),
+      );
+      if (!isDuplicate) {
+        result.push(item);
+      }
+    } else {
+      if (!result.includes(item)) {
+        result.push(item);
+      }
+    }
+  }
+
+  return result;
 };
