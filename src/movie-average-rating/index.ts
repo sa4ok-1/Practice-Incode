@@ -1,4 +1,7 @@
-import { CalculateAverageRatingsFn } from 'movie-average-rating/types';
+import {
+  CalculateAverageRatingsFn,
+  movieRating,
+} from 'movie-average-rating/types';
 
 /**
  * @task Calculate Average Movie Ratings
@@ -20,5 +23,36 @@ import { CalculateAverageRatingsFn } from 'movie-average-rating/types';
  * ]
  */
 export const calculateAverageRatings: CalculateAverageRatingsFn = (ratings) => {
-  throw new Error('Not Implemented');
+  const movieRatingsMap: Record<number, movieRating> = {};
+
+  ratings.forEach((rating) => {
+    if (!movieRatingsMap[rating.movieId]) {
+      movieRatingsMap[rating.movieId] = {
+        movieId: rating.movieId,
+        totalScore: 0,
+        count: 0,
+      };
+    }
+    movieRatingsMap[rating.movieId].totalScore += rating.score;
+    movieRatingsMap[rating.movieId].count += 1;
+  });
+  const averageScore = [];
+  for (const movieId in movieRatingsMap) {
+    const avg =
+      movieRatingsMap[movieId].totalScore / movieRatingsMap[movieId].count;
+    averageScore.push({
+      movieId: Number(movieId),
+      averageScore: Number(avg.toFixed(1)),
+    });
+  }
+  return averageScore;
 };
+
+console.log(
+  calculateAverageRatings([
+    { userId: 1, movieId: 10, score: 8 },
+    { userId: 2, movieId: 10, score: 6 },
+    { userId: 3, movieId: 11, score: 7 },
+    { userId: 4, movieId: 11, score: 9 },
+  ]),
+);
