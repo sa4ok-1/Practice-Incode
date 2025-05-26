@@ -23,10 +23,6 @@ export const parseQueryString: ParseQueryStringFn = (query) => {
   const items = query.split('&');
 
   items.forEach((item) => {
-    if (item.length === 0) {
-      return '';
-    }
-
     const parts = item.split('=');
     const key = parts[0];
     const value = parts[1] || '';
