@@ -23,6 +23,18 @@ import { GroupByFirstLetterFn } from 'group-by-first-letter/types';
  *   '': ['']
  * }
  */
-export const groupByFirstLetter: GroupByFirstLetterFn = (words) => {
-  throw new Error('Not Implemented');
+export const GroupByFirstLetter: GroupByFirstLetterFn = (words) => {
+  const result: Record<string, string[]> = {};
+
+  words.forEach((word) => {
+    const firstLetter = word.length > 0 ? word[0] : '';
+
+    if (!result[firstLetter]) {
+      result[firstLetter] = [];
+    }
+
+    result[firstLetter].push(word);
+  });
+
+  return result;
 };
