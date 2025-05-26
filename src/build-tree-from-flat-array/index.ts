@@ -38,6 +38,10 @@ import { BuildTreeFn, TreeNode } from './types';
  *   }
  * ]
  */
+
+export const buildTree: BuildTreeFn = () => {
+  throw new Error('Not Implemented');
+
 export const buildTree: BuildTreeFn = (items) => {
   const map = new Map<number, TreeNode>();
 
