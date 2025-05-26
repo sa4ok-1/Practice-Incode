@@ -1,4 +1,4 @@
-import { GroupByFn } from 'group-by/types';
+import { GroupByFn, GroupedResult } from 'group-by-task/types';
 
 /**
  * @task Group By Property
@@ -27,5 +27,18 @@ import { GroupByFn } from 'group-by/types';
  * }
  */
 export const groupBy: GroupByFn = (array, key) => {
-  throw new Error('Not Implemented');
+  return array.reduce(
+    (result, item) => {
+      const groupKey = String(item[key]);
+
+      if (!result[groupKey]) {
+        result[groupKey] = [];
+      }
+
+      result[groupKey].push(item);
+
+      return result;
+    },
+    {} as GroupedResult<(typeof array)[number]>,
+  );
 };

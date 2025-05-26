@@ -1,4 +1,4 @@
-import { GroupByTestCase } from 'group-by/types';
+import { GroupByTestCase } from 'group-by-task/types';
 
 export const groupByCases: GroupByTestCase[] = [
   {
