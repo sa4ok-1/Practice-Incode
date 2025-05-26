@@ -17,5 +17,11 @@ import { FormatPhoneNumberFn } from './types';
  * Output: ''
  */
 export const formatPhoneNumber: FormatPhoneNumberFn = (str) => {
-  throw new Error('Not Implemented');
+  const digitsOnly = str.replace(/\D/g, '');
+
+  if (digitsOnly.length !== 12) {
+    return '';
+  }
+
+  return `+${digitsOnly.slice(0, 2)} (${digitsOnly.slice(2, 5)}) ${digitsOnly.slice(5, 8)}-${digitsOnly.slice(8, 10)}-${digitsOnly.slice(10)}`;
 };
