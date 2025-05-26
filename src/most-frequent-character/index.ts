@@ -17,5 +17,18 @@ import { MostFrequentCharFn } from './types';
  * Output: ''
  */
 export const mostFrequentChar: MostFrequentCharFn = (text) => {
-  throw new Error('Not Implemented');
+  if (text === '') {
+    return '';
+  }
+  const cacheLetter: Record<string, number> = {};
+
+  [...text].forEach((char) => {
+    cacheLetter[char] = (cacheLetter[char] ?? 0) + 1;
+  });
+
+  return Object.entries(cacheLetter).reduce(
+    (maxChar, [char, count]) => (count > cacheLetter[maxChar] ? char : maxChar),
+    text[0],
+  );
 };
+console.log(mostFrequentChar('aabbbcccccrrrrrr'));
