@@ -20,5 +20,27 @@ export const mergeObjectArrays = <T extends Mergeable>(
   arr1: T[],
   arr2: T[],
 ): T[] => {
-  throw new Error('Not Implemented');
+  const newArr: T[] = [...arr1];
+  arr2.forEach((obj2) => {
+    const checkId = newArr.find((obj1) => obj1.id === obj2.id);
+    if (!checkId) {
+      newArr.push(obj2);
+      return;
+    }
+    Object.assign(checkId, obj2);
+  });
+  return newArr;
 };
+
+console.log(
+  mergeObjectArrays(
+    [
+      { id: 1, name: 'Alice' },
+      { id: 2, name: 'Bob' },
+    ],
+    [
+      { id: 2, age: 30 },
+      { id: 3, name: 'Carol' },
+    ],
+  ),
+);
