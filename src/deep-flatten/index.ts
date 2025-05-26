@@ -15,5 +15,17 @@ import { DeepFlattenFn } from 'deep-flatten/types';
  * Output: []
  */
 export const deepFlatten: DeepFlattenFn = (input) => {
-  throw new Error('Not Implemented');
+  const res: any[] = [];
+
+  input.forEach((element) => {
+    if (Array.isArray(element)) {
+      res.push(...deepFlatten(element));
+      return;
+    }
+    res.push(element);
+  });
+
+  return res;
 };
+
+console.log(deepFlatten([1, [2, [3, 4]], 5]));
