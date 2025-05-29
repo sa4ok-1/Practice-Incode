@@ -34,5 +34,27 @@ import { ExtractUniqueTagsFn } from 'unique-tags/types';
  * ['a', 'b', 'c', 'd']
  */
 export const extractUniqueTags: ExtractUniqueTagsFn = (items) => {
-  throw new Error('Not Implemented');
+  const result: Record<string, number> = {};
+
+  for (const item of items) {
+    for (const tag of item.tags) {
+      if (tag.trim() === '') {
+        continue;
+      }
+      if (result[tag]) {
+        result[tag]++;
+      } else {
+        result[tag] = 1;
+      }
+    }
+  }
+  return result;
 };
+
+console.log(
+  extractUniqueTags([
+    { id: 1, tags: ['a', 'b'] },
+    { id: 2, tags: ['b', 'c'] },
+    { id: 3, tags: ['a', 'd'] },
+  ]),
+);
