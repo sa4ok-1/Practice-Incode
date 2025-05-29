@@ -28,5 +28,42 @@ import { SummarizeTransactionsFn } from 'summarize-transactions/types';
 export const summarizeTransactions: SummarizeTransactionsFn = (
   transactions,
 ) => {
-  throw new Error('Not Implemented');
+  const result: Record<number, { totalIncome: number; totalExpense: number }> =
+    {};
+
+  transactions.forEach((tr) => {
+    const userId = tr.userId;
+
+    if (!result[userId]) {
+      result[userId] = { totalIncome: 0, totalExpense: 0 };
+    }
+
+    if (tr.type === 'income') {
+      result[userId].totalIncome += tr.amount;
+    } else {
+      result[userId].totalExpense += tr.amount;
+    }
+  });
+
+  const finalObj = [];
+
+  for (const key in result) {
+    finalObj.push({
+      userId: Number(key),
+      totalIncome: result[key].totalIncome,
+      totalExpense: result[key].totalExpense,
+      net: result[key].totalIncome - result[key].totalExpense,
+    });
+  }
+
+  return finalObj;
 };
+
+console.log(
+  summarizeTransactions([
+    { userId: 1, amount: 100, type: 'income' },
+    { userId: 1, amount: 50, type: 'expense' },
+    { userId: 2, amount: 200, type: 'income' },
+    { userId: 1, amount: 25, type: 'expense' },
+  ]),
+);
