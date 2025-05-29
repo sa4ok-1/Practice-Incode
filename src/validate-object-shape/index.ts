@@ -14,5 +14,23 @@ import { ValidateObjectShapeFn } from './types';
  * Output: false (missing key)
  */
 export const validateObjectShape: ValidateObjectShapeFn = (obj, schema) => {
-  throw new Error('Not Implemented');
+  for (const key in schema) {
+    if (!(key in obj)) {
+      return false;
+    }
+
+    const expectedType = schema[key];
+    const actualType = typeof obj[key];
+    console.log(actualType);
+    if (actualType !== expectedType) {
+      return false;
+    }
+  }
+  return true;
 };
+console.log(
+  validateObjectShape(
+    { name: 'Alice', age: 30 },
+    { name: 'string', age: 'number' },
+  ),
+);
