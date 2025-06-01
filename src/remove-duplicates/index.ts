@@ -16,23 +16,18 @@ import { RemoveDuplicatesFn } from './types';
  * Output:
  * [ { id: 1 }, { id: 2 } ]
  */
+
 export const removeDuplicates: RemoveDuplicatesFn = <T>(array: T[]): T[] => {
-  const result: T[] = [];
+  const seen = new Set<string>();
 
-  for (const item of array) {
-    if (typeof item === 'object' && item !== null) {
-      const isDuplicate = result.some(
-        (obj) => JSON.stringify(obj) === JSON.stringify(item),
-      );
-      if (!isDuplicate) {
-        result.push(item);
-      }
-    } else {
-      if (!result.includes(item)) {
-        result.push(item);
-      }
-    }
-  }
+  return array.filter((item) => {
+    const key = typeof item === 'object' && item !== null
+      ? JSON.stringify(item)
+      : String(item);
 
-  return result;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 };
+
